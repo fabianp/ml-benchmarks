@@ -36,8 +36,8 @@ def bench_shogun(X, y, T, valid):
     from shogun.Clustering import KMeans
     start = datetime.now()
     feat = RealFeatures(X.T)
-    distance=EuclidianDistance(feat, feat)
-    clf=KMeans(n_components, distance)
+    distance = EuclidianDistance(feat, feat)
+    clf = KMeans(n_components, distance)
     clf.train()
     return inertia(X, clf.get_cluster_centers()), datetime.now() - start
 

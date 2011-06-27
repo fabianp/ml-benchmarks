@@ -9,9 +9,16 @@ major machine learning toolkits accessible in Python.
 **Last Update: June-2011**
 
 Time in seconds on the Madelon dataset for various machine learning libraries
-exposed in Python: `MLPy <https://mlpy.fbk.eu/>`_, `PyBrain
-<http://pybrain.org/>`_, PyMVPA, MDP, Shogun and MiLK. Code for running the
+exposed in Python: `MLPy <http://mlpy.fbk.eu/>`_, `PyBrain
+<http://pybrain.org/>`_, `PyMVPA <http://pymvpa.org>`_, `MDP
+<http://mdp-toolkit.sourceforge.net/>`_, `Shogun <http://shogun-toolbox.org>`_
+and `MiLK <http://luispedro.org/software/milk>`_. Code for running the
 benchmarks can be retrieved from http://github.com/scikit-learn.
+
+We also plot the score on a validation dataset for all algorithms. For
+classification algorithms, it's the fraction of correctly classified samples,
+for regression algorithms it's the mean squared error and for k-means it's the
+inertia criterion.
 
 
 Used software
@@ -25,7 +32,7 @@ We used the latest released version as of June 2011:
   - PyMVPA 0.6.0.dev
   - Shogun 0.10.0
 
-I ran it on my Intel Core2 6600, 2.40GHz CPU.
+I ran it on an Intel(R) Core(TM)2 CPU @ 1.86GHz.
 
 
 Used datasets
@@ -51,8 +58,11 @@ benchmark, Isabelle Guyon, July 2003.
 Support Vector Machines
 -----------------------
 
-We used several Support Vector Machine implementations, with RBF kernel. Code
-can be found here. All implementations use LibSVM in the background.
+We used several Support Vector Machine (RBF kernel) implementations. Numbers
+represent the time in seconds (lower is better) it took to train the dataset
+and perform prediction on a test dataset. In the plot, results are normalized
+so that the fastest method has value 1.0.
+
 
 
 .. table:: Results in scikits.learn ml-benchmarks
@@ -64,8 +74,6 @@ can be found here. All implementations use LibSVM in the background.
           Arcene             1.37             0.42       --          --             1.75             0.41         **0.34**
      ============         =======           ======     ====     =======         ========    =============         ========
 
-Numbers represent the time in seconds (lower is better) it took to train the dataset and perform
-prediction on a test dataset.
 
 
 .. figure:: bench_svm.png
@@ -73,8 +81,14 @@ prediction on a test dataset.
    :align: center
 
 
-The score by these calssfifiers in in a test dataset is. The 0.0 score in
-Shogun and Milk obviously indicates a bug in these packages or in the benchmarking routines.
+The score by these calssfifiers in in a test dataset is.
+
+.. warning::
+
+     This is just meant as a sanity check, should not be taken at face
+     value since parameters are not cross-validated, etc.
+
+.. table:: Score in scikits.learn ml-benchmarks
 
      ============         =======           ======    ====      =======         ===========       =============         ========
           Dataset          PyMVPA           Shogun    MDP       Pybrain                MLPy       scikits.learn             milk
@@ -88,70 +102,56 @@ Shogun and Milk obviously indicates a bug in these packages or in the benchmarki
 K-means
 -------
 
+bla bla bla
+
 .. table:: Results in scikits.learn ml-benchmarks
 
-     ============         =======           ======     ====     =======         ========    =============         ========
-        Benchmark          PyMVPA           Shogun      MDP     Pybrain             MLPy    scikits.learn             milk
-     ============         =======           ======     ====     =======         ========    =============         ========
-          kmeans               --               --       --          --             0.81             1.77          **1.0**
-     ============         =======           ======     ====     =======         ========    =============         ========
+     ============         =======       ======     ====     =======         ========    =============         ========
+          Dataset         PyMVPA        Shogun      MDP     Pybrain             MLPy    scikits.learn             milk
+     ============         =======       ======     ====     =======         ========    =============         ========
+          Madelon              --           --     28.9          --             0.79             1.36          **1.0**
+           Arcene              --           --       --          --             0.81             1.77          **1.0**
+     ============         =======       ======     ====     =======         ========    =============         ========
+
+
+.. figure:: bench_svm.png
+   :scale: 60%
+   :align: center
+
+
+The following table shows the inertia, criterion that the k-means algorithm minimizes.
+
+.. table:: Inertia
+
+     ============         =======           ======     ====     =======     ============    =============         ========
+          Inertia          PyMVPA           Shogun      MDP     Pybrain             MLPy    scikits.learn             milk
+     ============         =======           ======     ====     =======     ============    =============         ========
+          Madelon              --               --      --           --      739171883.6      745421891.3               --
+     ============         =======           ======     ====     =======     ============    =============         ========
 
 
 Elastic Net
 -----------
 
-Lasso (LARS algorithm)
-----------------------
-
-
-Score
------
-
-The following table shows the classification score on a validation dataset.
-For classification algorithms, it's the fraction of correctly classified
-samples, for regression algorithms it's the mean squared error and for k-means
-it's the inertia criterion.
-
-.. warning::
-
-     This is just meant as a sanity check, should not be taken at face
-     value since parameters are not cross-validated, etc.
-
-.. table:: Score in scikits.learn ml-benchmarks
-
-     ============         =======           ======    ====      =======         ===========       =============         ========
-            Score          PyMVPA           Shogun    MDP       Pybrain                MLPy       scikits.learn             milk
-     ============         =======           ======    ====      =======         ===========       =============         ========
-             svm             0.5               0.0                   --                0.65                0.65              0.0
-          kmeans               --             2.02      --      7057.02         739171883.6         745421891.3          **1.0**
-     ============         =======           ======    ====      =======         ===========       =============         ========
-
-
-
----
-To be removed
+Bla bla bla bla
 
 
 .. table:: Results in scikits.learn ml-benchmarks
 
-     ============         =======           ======    =====          =======         ========    =============         ========
-        Benchmark          PyMVPA           Shogun     MDP           Pybrain             MLPy    scikits.learn             milk
-     ============         =======           ======    =====          =======         ========    =============         ========
-             knn             1.10             0.22     0.10               --             0.21         **0.09**           1.33
-       lassolars            10.99               --       --               --             3.80             1.16
-     ============         =======           ======    =====          =======         ========    =============         ========
+     ============         =======       ======     ====     =======         ========    =============         ========
+          Dataset         PyMVPA        Shogun      MDP     Pybrain             MLPy    scikits.learn             milk
+     ============         =======       ======     ====     =======         ========    =============         ========
+          Madelon              --           --       --          --             0.81             1.77          **1.0**
+           Arcene              --           --       --          --             0.81             1.77          **1.0**
+     ============         =======       ======     ====     =======         ========    =============         ========
 
 
+.. figure:: bench_svm.png
+   :scale: 60%
+   :align: center
 
 
-.. table:: Score in scikits.learn ml-benchmarks
+Lasso (LARS algorithm)
+----------------------
 
-     ============         =======           ======    ====      =======         ========    =============         ========
-            Score          PyMVPA           Shogun    MDP       Pybrain             MLPy    scikits.learn             milk
-     ============         =======           ======    ====      =======         ========    =============         ========
-             svm             0.56              0.0                  --             0.56             0.56              0.0
-             knn             0.73             0.73    0.73          --             0.73             0.73             0.73
-        lassolars             NaN               --      --          --              NaN            61.94
-     ============         =======           ======    ====      =======         ========    =============         ========
-
-
+TODO
