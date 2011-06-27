@@ -134,11 +134,11 @@ if __name__ == '__main__':
     print 'MLPy: mean %.2f, std %.2f' % (
         np.mean(res_mlpy), np.std(res_mlpy))
     print 'Score: %2f\n' % score
-
-    score, res_pybrain = misc.bench(bench_pybrain, data)
-    print 'Pybrain: mean %.2f, std %.2f' % (
-        np.mean(res_pybrain), np.std(res_pybrain))
-    print 'Score: %2f\n' % score
+##
+##    score, res_pybrain = misc.bench(bench_pybrain, data)
+##    print 'Pybrain: mean %.2f, std %.2f' % (
+##        np.mean(res_pybrain), np.std(res_pybrain))
+##    print 'Score: %2f\n' % score
 
     score, res_milk = misc.bench(bench_milk, data)
     print 'milk: mean %.2f, std %.2f' % (

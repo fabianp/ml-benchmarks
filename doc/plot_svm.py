@@ -10,11 +10,16 @@ color = itertools.cycle('bgrcmykbgrcmyk')
 ##time_madelon = (12.89, 6.03, 10.88, 6.23, 4.90)
 ##time_arcene = (1.37, 0.42, 1.75, 0.41, 0.34)
 ##soft = ('PyMVPA', 'Shogun', 'MLPy', 'scikits.learn', 'Milk'),
+##
+### time for kmeans
+##time_madelon = (6.03, 0.79, 1.36, 0.55)
+##time_arcene = (1.86, 0.33, 0.55, 0.24)
+##soft = ('MDP', 'MLPy', 'scikits.learn', 'Milk'),
 
-# time for kmeans
-time_madelon = (28.90, 6.03, 0.79, 1.36, 4.90)
-time_arcene = (1.37, 0.42, 1.75, 0.41, 0.34)
-soft = ('PyMVPA', 'MDP', 'MLPy', 'scikits.learn', 'Milk'),
+# LARS
+time_madelon = (6.03, 0.79, 1.27, 0.55)
+time_arcene = (1.86, 0.33, 0.55, 0.24)
+soft = ('MDP', 'MLPy', 'scikits.learn', 'Milk'),
 
 
 # normalize
@@ -25,7 +30,7 @@ pl.bar(np.arange(0, 3 * len(time_arcene), 3), time_madelon, color='b', label='Ma
 pl.bar(np.arange(0, 3 * len(time_arcene), 3) + 1, time_arcene, color='g', label='Arcene dataset')
 pl.legend()
 pl.xticks(np.arange(0, 3 * len(time_arcene), 3) + 1,
-          soft,
+          *soft,
           rotation=0)
 pl.title('Time needed to perform train + predict (smaller is better)')
 pl.show()
